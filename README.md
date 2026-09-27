@@ -12,7 +12,7 @@ Coming soon. For now, build it from source.
 
 ### Build from source
 
-You'll need a Mac running macOS 27 or later, with Xcode installed.
+You'll need a Mac running macOS 14 or later, with Xcode installed.
 
 1. Open Terminal.
 2. Clone the repo and open the project:
