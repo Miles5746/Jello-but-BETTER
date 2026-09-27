@@ -57,7 +57,7 @@ struct MenuContent: View {
         .keyboardShortcut("q")
 
         Divider()
-        Text("Made by Miles5746/Noli")
+        Text("Made by Miles5746")
     }
 }
 #endif

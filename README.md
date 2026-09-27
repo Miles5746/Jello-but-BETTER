@@ -55,4 +55,4 @@ Delaying every row of the screen takes a lot of work, so the Jello setting lets 
 
 ---
 
-Made by [Miles5746](https://github.com/Miles5746)/Noli
+Made by [Miles5746](https://github.com/Miles5746)
