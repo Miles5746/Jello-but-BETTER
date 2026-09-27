@@ -13,7 +13,7 @@ final class ScreenMirrorController {
     var effect: Effect = .none {
         didSet { view?.effect = effect }
     }
-    var jello: Jello = .medium {
+    var jello: Jello = .subtle {
         didSet {
             view?.jelloDelay = jello.delay
             if jello == .off { endWindowCapture() }
@@ -25,9 +25,6 @@ final class ScreenMirrorController {
             view?.jelloWindowOnly = jelloWindowOnly
             if !jelloWindowOnly { endWindowCapture() }
         }
-    }
-    var liquidGlass = false {
-        didSet { view?.liquidGlass = liquidGlass }
     }
 
     private var window: NSWindow?
@@ -163,7 +160,6 @@ final class ScreenMirrorController {
         let view = MetalScreenView(frame: CGRect(origin: .zero, size: screen.frame.size))
         view.effect = effect
         view.jelloDelay = jello.delay
-        view.liquidGlass = liquidGlass
         view.jelloWindowOnly = jelloWindowOnly
         view.onWindowPressed = { [weak self] windowID in self?.prepareWindowCapture(windowID) }
         view.onDragStarted = { [weak self] in self?.commitWindowCapture() }

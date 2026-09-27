@@ -34,7 +34,6 @@ Jello-but-BETTER runs in the menu bar (look for the magic wand icon). From its m
 | **Effect** | A color or filter over the whole screen: Invert, Grayscale, Sepia, Hue Cycle, Pixellate or CRT Scanlines. |
 | **Jello** | How wobbly things get: Off, Subtle, Medium or Strong. |
 | **Dragged Window Only** | Only the window you're dragging wobbles, instead of the whole screen. |
-| **Liquid Glass** | A lens around your cursor that squeezes the content under it. |
 
 ## How it works
 

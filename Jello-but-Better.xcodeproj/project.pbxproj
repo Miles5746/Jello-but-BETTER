@@ -60,7 +60,7 @@
 				000000000000000000000010 /* Jello-but-Better */,
 			);
 			name = "Jello-but-Better";
-			productName = Jello-but-Better;
+			productName = "Jello-but-Better";
 			productReference = 000000000000000000000120 /* Jello-but-Better.app */;
 			productType = "com.apple.product-type.application";
 		};

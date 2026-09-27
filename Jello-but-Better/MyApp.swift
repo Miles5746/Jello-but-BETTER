@@ -42,8 +42,6 @@ struct MenuContent: View {
         }
         Toggle("Dragged Window Only", isOn: $controller.jelloWindowOnly)
 
-        Toggle("Liquid Glass", isOn: $controller.liquidGlass)
-
         if let message = controller.errorMessage {
             Divider()
             Text(message)

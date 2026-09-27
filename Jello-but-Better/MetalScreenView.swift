@@ -23,7 +23,6 @@ final class MetalScreenView: MTKView {
     var effect: Effect = .none
     /// Delay a full screen height from the cursor, in seconds. 0 disables the jello effect.
     var jelloDelay: TimeInterval = 0
-    var liquidGlass = false
     /// Wobble only the dragged window (see `WobblyWindow`) instead of rippling the screen.
     var jelloWindowOnly = false
     let frames = LatestFrame()
@@ -43,7 +42,6 @@ final class MetalScreenView: MTKView {
     private let jello: JelloBuffer
     private var spring = JelloSpring()
     private var lastTick = CACurrentMediaTime()
-    private let glass: LiquidGlass
     private let dragTracker = WindowDragTracker()
     private let wobbly: WobblyWindow
     private var pressedWindowID: CGWindowID?
@@ -63,7 +61,6 @@ final class MetalScreenView: MTKView {
         commandQueue = queue
         ciContext = CIContext(mtlCommandQueue: queue, options: [.cacheIntermediates: false])
         jello = JelloBuffer(device: device)
-        glass = LiquidGlass(device: device)
         wobbly = WobblyWindow(device: device)
         super.init(frame: frame, device: device)
         colorPixelFormat = .bgra8Unorm
@@ -108,17 +105,16 @@ final class MetalScreenView: MTKView {
         commandBuffer.commit()
     }
 
-    /// Runs the frame through the enabled Metal passes (jello, then liquid glass), or returns
-    /// nil if none are on. Called every display tick, even when the screen hasn't changed, so
-    /// the jello's delayed rows keep catching up to the live frame.
+    /// Runs the frame through the jello Metal pass, or returns nil if it's off. Called every
+    /// display tick, even when the screen hasn't changed, so the jello's delayed rows keep
+    /// catching up to the live frame.
     private func gpuPassesImage(from pixelBuffer: CVPixelBuffer, commandBuffer: MTLCommandBuffer) -> CIImage? {
         let windowMode = jelloWindowOnly && jelloDelay > 0
         if jelloDelay <= 0 || windowMode {
             jello.reset()
             spring.reset()
         }
-        if !liquidGlass { glass.reset() }
-        guard jelloDelay > 0 || liquidGlass, let textureCache else { return nil }
+        guard jelloDelay > 0, let textureCache else { return nil }
 
         guard let source = metalTexture(for: pixelBuffer, cache: textureCache, commandBuffer: commandBuffer) else {
             return nil
@@ -142,9 +138,6 @@ final class MetalScreenView: MTKView {
                         limit: Double(source.height) * 0.1)
             composed = jello.process(composed, delayTicks: delayTicks, centerRow: row, wobble: spring.history,
                                      commandBuffer: commandBuffer) ?? composed
-        }
-        if liquidGlass {
-            composed = glass.process(composed, cursor: cursor, commandBuffer: commandBuffer) ?? composed
         }
 
         // Metal textures are top-down; Core Image is bottom-up.
