@@ -55,6 +55,9 @@ struct MenuContent: View {
             NSApplication.shared.terminate(nil)
         }
         .keyboardShortcut("q")
+
+        Divider()
+        Text("Made by Miles5746/Noli")
     }
 }
 #endif
