@@ -1,39 +1,55 @@
 # Jello-but-BETTER
-Inspired by https://github.com/iamDecode/Jello , Jello but Better aims of remaking these features, in a more practical way.
 
-Normal install:
-1. I will make this later, just Install from source for now
+Wobbly, jelly windows for macOS, without disabling SIP.
 
-Install from source instructions:
-1. Open terminal
-2. run ```Git Clone https://github.com/Miles5746/Jello-but-Better && cd Jello-but-Better && open -R Jello-but-Better.xcodeproj/```
-3. Open the file in Xcode
-4. Press ⌘+r to build and run
-   
+Inspired by [Jello](https://github.com/iamDecode/Jello). Jello-but-BETTER remakes its effects in a more practical way.
 
+## Install
 
-# About:
-Instead of injecting dylibs into apps, which requires disabling SIP and doesn't work on official apps (Safari, Settings Etc),
-this app records your screen, and displays the output on a window - but this window has no Traffic lights, title, or anything
-like that which makes it obvious, and on top of that you can click through it without losing focus.
+### Download
 
+Coming soon. For now, build it from source.
 
-Basically, instead of looking at grass with your eyes, you are looking at it through your phones camera - only your desktop is
-the grass, and the phone is this app. Because the phone (or the app) is what displays it, it can put on effects, like change
-the colours, or make a fisheye lense, but if you wait a nano second when showing each line from top to bottom, like the time warp filter (https://www.youtube.com/shorts/ize8YS0kvwo)
+### Build from source
 
+You'll need a Mac running macOS 27 or later, with Xcode installed.
 
-If you speed this up, by alot, and move a window, you get a jello effect! Cool!
-Thats literally what happens when you use the effect without the window-only options on,
-but instead of top to bottom it's up and down from your cursor.
+1. Open Terminal.
+2. Clone the repo and open the project:
+   ```sh
+   git clone https://github.com/Miles5746/Jello-but-BETTER.git
+   cd Jello-but-BETTER
+   open Jello-but-Better.xcodeproj
+   ```
+3. In Xcode, press **⌘R** to build and run.
+4. When macOS asks, give the app **Screen Recording** permission. If you miss the prompt, the menu has a button that opens the right Settings page.
 
+## Usage
 
-ONE problem:
+Jello-but-BETTER runs in the menu bar (look for the magic wand icon). From its menu you can:
 
-If you try this with ALL 1080 lines from top to bottom, it creates a LOT of lag. So there are options in it:
+| Option | What it does |
+| --- | --- |
+| **Start / Stop Overlay** | Turns the effect on or off. You can also press **⌃⌥⌘E** from any app. |
+| **Effect** | A color or filter over the whole screen: Invert, Grayscale, Sepia, Hue Cycle, Pixellate or CRT Scanlines. |
+| **Jello** | How wobbly things get: Off, Subtle, Medium or Strong. |
+| **Dragged Window Only** | Only the window you're dragging wobbles, instead of the whole screen. |
+| **Liquid Glass** | A lens around your cursor that squeezes the content under it. |
 
-Subtle - One I use on my M1 Mac mini 8GB ram | Basically the worst apple silicon, so this will no doubt work on yours too.
+## How it works
 
-Medium - Lags on my mac, but if I had something like a M3 or M4 I might use this. More rebound from ripples.
+The original Jello injects code (dylibs) into other apps. That means turning off System Integrity Protection, and it still can't touch Apple's own apps such as Safari or System Settings.
 
-Strong - Look phenominal, but my mac can't stand it. This is not a option like the others - It's a toy.
+Jello-but-BETTER records your screen instead, and shows the recording in a window on top of everything else. That window has no title bar, traffic lights or anything else that gives it away, and clicks go straight through it to the apps underneath, so they never lose focus.
+
+Think of it like looking at grass through your phone's camera instead of with your own eyes. Your desktop is the grass, and this app is the phone. Because the app is what's drawing the picture, it can add effects: change the colors, make a fisheye lens, and so on.
+
+The jello effect works like the [time warp filter](https://www.youtube.com/shorts/ize8YS0kvwo). That filter shows each row of the picture a little later than the one above it, from top to bottom. Speed that way up and move a window, and it wobbles like jello. Jello-but-BETTER spreads the delay up and down from your cursor instead of top to bottom, so the part you're holding follows you exactly and everything further away lags behind.
+
+## Performance
+
+Delaying every row of the screen takes a lot of work, so the Jello setting lets you choose how much:
+
+- **Subtle**: What I use on my M1 Mac mini with 8 GB of RAM, which is about the slowest Apple silicon there is, so it should run fine on yours.
+- **Medium**: Laggy on my Mac, but I'd probably use it on an M3 or M4. It has more rebound in the ripples.
+- **Strong**: Looks phenomenal, but my Mac can't keep up. Think of it as a toy, not a daily setting.
