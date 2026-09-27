@@ -8,7 +8,13 @@ Inspired by [Jello](https://github.com/iamDecode/Jello). Jello-but-BETTER remake
 
 ### Download
 
-Coming soon. For now, build it from source.
+Open Terminal and paste this in:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Miles5746/Jello-but-BETTER/main/install.sh | bash
+```
+
+It downloads the app, puts it in your Applications folder and signs it so macOS will open it. It will ask for your Mac password to do that.
 
 ### Build from source
 
