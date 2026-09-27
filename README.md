@@ -52,3 +52,7 @@ Delaying every row of the screen takes a lot of work, so the Jello setting lets 
 - **Subtle**: What I use on my M1 Mac mini with 8 GB of RAM, which is about the slowest Apple silicon there is, so it should run fine on yours.
 - **Medium**: Laggy on my Mac, but I'd probably use it on an M3 or M4. It has more rebound in the ripples.
 - **Strong**: Looks phenomenal, but my Mac can't keep up. Think of it as a toy, not a daily setting.
+
+---
+
+Made by [Miles5746](https://github.com/Miles5746)
